@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="PT-br" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap"
+        rel="stylesheet">
+    <title>Dashboard Produtores</title>
+    <link rel="stylesheet" href="style/reset.css">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/navBar/styleNavBarLeft.css">
+    <link rel="stylesheet" href="style/navBar/styleNavBarHeader.css">
+    <link rel="stylesheet" href="style/styleDashboardProducer/styleDashboardProducer.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <main class="gridContainerBody">
+
+        <nav class="navBarLeft">
+            <section class="logo"><img src="images/logo/logoCerto.png" alt="logo queijos finos"></section>
+            <section class="listLinksNav">
+                <ul class="listLinks">
+                    <li class="listSelect"><a href="/dashboardProducer"><img src="images/icons/Vectorwhite.svg" alt=""> Dashboard</a></li>
+                    <li><a href="/producers"><img src="images/icons/producerVetor.svg" alt=""> Produtores</a></li>
+                    <li><a href="/tecnologias"><img src="images/icons/cheeseVetor.svg" alt=""> Cadastor Tecnologias</a>
+                    </li>
+                    <li><a href="/users"><img src="images/icons/configVetor.svg" alt="">
+                            Configurações</a></li>
+                </ul>
+            </section>
+        </nav>
+
+        <section class="sectionPrincipal flexContainercolum">
+            <nav class="navBarHeader">
+                <ul class="navBarHeaderList">
+                    <li><img src="images/icons/notificationvetor.svg" alt="icone de notificações"></li>
+                    <li><img src="images/icons/configVetorWhite.svg" alt="icone de configurações"></li>
+                </ul>
+                <ul class="navBarHeaderList navBarHeaderListLow">
+                    <li>dashboard</li>
+                    <li>administrador</li>
+                </ul>
+            </nav>
+
+            <section class="section-grafic">
+                <div class="graphic-container">
+                    <div class="graphic1">
+                        <h2 class="txtgraph">Status De Produção</h2>
+                        <div class="productionStatus">
+                            <canvas id="graphicProductionStatus" th:id="'graphicProductionStatus'"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="graphic2">
+                        <h2 class="txtgraph">Certificações Conquistadas</h2>
+                        <div class="certificationsAchieveds">
+                            <canvas id="graphicCertificationsAchieveds"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="graphic-container2">
+                    <div class="graphic3">
+                        <h2 class="txtgraph">Tecnologias</h2>
+                        <div class="graphicTechnologies">
+                            <canvas id="technologies"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <!-- <script src="../../script/DashboardProducer/graphicsDashboardProducer.js"></script> -->
+
+    <script th:inline="javascript">
+
+        var producingCount = /*[[${producingCount}]]*/ 0;
+        var complementationCount = /*[[${complementationCount}]]*/ 0;
+        var withdrawalCount = /*[[${withdrawalCount}]]*/ 0;
+        var disconnectedCount = /*[[${disconnectedCount}]]*/ 0;
+        var arrayAllCount = [producingCount, complementationCount, withdrawalCount, disconnectedCount];
+    
+        console.log("Dados para o gráfico de Status de Produção:");
+        console.log("Produzindo:", producingCount);
+        console.log("Complementação:", complementationCount);
+        console.log("Desistentes:", withdrawalCount);
+        console.log("Desligados:", disconnectedCount);
+    
+        const ProductionStatus = document.getElementById('graphicProductionStatus');
+    
+        const config1 = {
+            type: 'doughnut',
+            data: {
+                labels: ['Ativos Produzindo', 'Ativos em complementação', 'Desistentes', 'Desligados'],
+                datasets: [{
+                    label: '',
+                    data: arrayAllCount,
+                    backgroundColor: ['#059bff', '#ffc234', '#ff4069', '#9a9b98'],
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        labels: {
+                            font: {
+                                family: 'Poppins',
+                                size: 16,
+                            },
+                        }
+                    }
+                }
+            }
+        };
+    
+        new Chart(ProductionStatus, config1);
+    
+        document.addEventListener('DOMContentLoaded', function () {
+            var activeTechnologyNames = /*[[${activeTechnologyNames}]]*/[];
+            var producingCounts = /*[[${producingCounts}]]*/[];
+            var complementationCounts = /*[[${complementationCounts}]]*/[];
+            var withdrawalCounts = /*[[${withdrawalCounts}]]*/[];
+    
+            console.log("Dados para o gráfico de Tecnologias:");
+            console.log("Nomes das tecnologias:", activeTechnologyNames);
+            console.log("Produzindo:", producingCounts);
+            console.log("Complementação:", complementationCounts);
+            console.log("Desistentes:", withdrawalCounts);
+    
+            const technologiesCanvas = document.getElementById('technologies');
+            const technologiesChart = new Chart(technologiesCanvas, {
+                type: 'bar',
+                data: {
+                    labels: activeTechnologyNames,
+                    datasets: [{
+                        label: 'Produzindo',
+                        backgroundColor: 'rgba(5, 155, 255, 0.6)',
+                        borderColor: 'rgba(5, 155, 255, 1)',
+                        borderWidth: 4,
+                        data: producingCounts
+                    }, {
+                        label: 'Em complementação',
+                        backgroundColor: 'rgba(255, 194, 52, 0.6)',
+                        borderColor: 'rgba(255, 194, 52, 1)',
+                        borderWidth: 4,
+                        data: complementationCounts
+                    }, {
+                        label: 'Desistentes',
+                        backgroundColor: 'rgba(255, 64, 105, 0.6)',
+                        borderColor: 'rgba(255, 64, 105, 1)',
+                        borderWidth: 4,
+                        data: withdrawalCounts
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            ticks: {
+                                beginAtZero: true,
+                                font: {
+                                    family: 'Poppins',
+                                    size: 16
+                                }
+                            },
+                            grid: {
+                                display: true,
+                                lineWidth: 1
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                font: {
+                                    family: 'Poppins',
+                                    size: 16
+                                }
+                            },
+                            grid: {
+                                display: true,
+                                lineWidth: 1
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    
+        var SIMPOACount = /*[[${SIMPOACount}]]*/ 0;
+        var SUSAFCount = /*[[${SUSAFCount}]]*/ 0;
+        var SISBICount = /*[[${SISBICount}]]*/ 0;
+        var SELOARTECount = /*[[${SELOARTECount}]]*/ 0;
+        var CIFCount = /*[[${CIFCount}]]*/ 0;
+        
+        var ArrayCountCertificate = [SIMPOACount, SUSAFCount, SISBICount, SELOARTECount, CIFCount];
+    
+        console.log("Dados para o gráfico de Certificações Conquistadas:");
+        console.log("SIM/POA:", SIMPOACount);
+        console.log("SUSAF:", SUSAFCount);
+        console.log("SISBI:", SISBICount);
+        console.log("SELO ARTE:", SELOARTECount);
+        console.log("SIF:", CIFCount);
+    
+        const certificationsAchieveds = document.getElementById('graphicCertificationsAchieveds');
+    
+        new Chart(certificationsAchieveds, {
+            type: 'bar',
+            data: {
+                labels: ['Sim/POA', 'SUSAF', 'SISBI', 'SELO ARTE', 'SIF'],
+                datasets: [{
+                    maxBarThickness: 100,
+                    label: ' ',
+                    data: ArrayCountCertificate, //ARRAY ID-1 E ID-4 COM PROBLEMA
+                    backgroundColor: ['rgba(75, 192, 192, 0.6)'],
+                    borderColor: ['rgba(75, 192, 192, 10)'], 
+                    borderWidth: 4
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        
+                        ticks: {
+                            font: {
+                                family: 'Poppins',
+                                size: 16
+                            }
+                        },
+                        grid: {
+                            display: true,
+                            lineWidth: 1
+                        },
+                        beginAtZero: true
+                    },
+                    x: {
+                        ticks: {
+                            font: {
+                                family: 'Poppins',
+                                size: 16
+                            }
+                        },
+                        grid: {
+                            display: true,
+                            lineWidth: 1
+                        }
+                    }
+                }
+            }
+        });
+    
+    </script>
+    
+</body>
+
+</html>

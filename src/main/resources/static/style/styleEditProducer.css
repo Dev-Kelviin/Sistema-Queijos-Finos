@@ -1,0 +1,230 @@
+/* Estilo geral do formulário do produtor */
+.producer-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 94%;
+    height: 1000px;
+    margin-inline: 10px;
+}
+
+/* Contêiner para grupos de campos de formulário */
+.campos-container {
+    gap: 20px;
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+/* Linha de campos de formulário */
+.campos-form {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.campos-form > div {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.campos-form > div input {
+    width: 100%;
+}
+
+/* Estilo dos campos de formulário */
+.campos-form input,
+.campos-form select {
+    padding: 8px;
+    font-size: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px; /* Arredondamento */
+    background-color: #fff;
+}
+
+.campos-form input:focus,
+.campos-form select:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+/* Contêiner de certificações e informações de contrato */
+.certifications-container,
+.contract-info-container {
+    gap: 20px;
+    border: 2px solid black;
+    border-radius: 10px; /* Arredondamento */
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    flex: 1;
+}
+
+/* Estilo dos campos de certificações e informações de contrato */
+.certifications-container > div,
+.contract-info-container > div {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.certifications-container h3,
+.contract-info-container h3 {
+    margin-bottom: 20px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+/* Estilo dos campos de certificações e informações de contrato */
+.certifications-container input,
+.certifications-container select,
+.contract-info-container input,
+.contract-info-container select {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px; /* Arredondamento */
+    background-color: #fff;
+}
+
+.certifications-container input:focus,
+.certifications-container select:focus,
+.contract-info-container input:focus,
+.contract-info-container select:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+/* Contêiner para observações */
+.observation-container {
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.observation-container h3 {
+    margin-bottom: 20px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.observation-container input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+}
+
+/* Estilo dos botões */
+.buttonsInfoProducer {
+    background-color: #f1f1f1;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 2px;
+}
+
+.buttonsInfoProducer:hover {
+    background-color: #ddd;
+}
+
+.buttonSave {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 20px;
+    background-color: #036513;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.buttonSave:hover {
+    background-color: #036512;
+}
+
+.buttonSave img {
+    width: 20px;
+    height: 20px;
+}
+
+.certifications-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.contract-info {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
+    padding: 10px;
+    gap: 5px;
+    width: 60%;
+}
+
+.contract-info input,
+.contract-info select {
+    padding: 8px;
+    font-size: 12px;
+    width: 130px;
+    border: 1px solid #ccc;
+    border-radius: 4px; /* Arredondamento */
+    background-color: #fff;
+}
+
+.certifications {
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+    gap: 5px;
+    border: 2px solid black;
+    width: 35%;
+}
+
+.certifications select,
+.certifications input {
+    padding: 8px;
+    font-size: 12px;
+    width: 130px;
+    border: 1px solid #ccc;
+    border-radius: 4px; /* Arredondamento */
+    background-color: #fff;
+}
+
+.campoCertificationInfos {
+    display: flex;
+    justify-content: space-between;
+}
+
+.contentEditProducer {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.containerButtonsInfoProducer {
+    display: flex;
+    width: 90%;
+    margin-inline: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.button-submit {
+    display: flex;
+    justify-content: end;
+}
+
+.button-submit button {
+    background-color: #036513;
+    padding: 8px;
+    border-radius: 4px;
+    color: white;
+}

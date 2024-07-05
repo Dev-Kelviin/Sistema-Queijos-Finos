@@ -1,0 +1,142 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+box-sizing: border-box;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+margin: 0;
+}
+
+/* Remove default padding */
+figure,
+blockquote,
+dl,
+dd {
+padding: 0;
+}
+
+/* Reset typography */
+html {
+font-family: sans-serif;
+font-size: 16px;
+}
+
+body {
+line-height: 1.5;
+}
+
+/* Remove list styles */
+ul,
+ol {
+list-style: none;
+}
+
+/* Remove hyperlinks underline */
+a {
+text-decoration: none;
+color: black;
+}
+
+/* Remove default button styles */
+button,
+input,
+select,
+textarea {
+margin: 0;
+font-family: inherit;
+font-size: inherit;
+line-height: inherit;
+}
+
+/* Remove default button styles in Safari */
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+border: 0;
+padding: 0;
+}
+
+/* Remove border-style from all input and textarea elements */
+input,
+textarea {
+border-style: none;
+}
+
+/* Remove default outline styles */
+button,
+input,
+select,
+textarea {
+outline: none;
+}
+
+/* Remove default focus styles */
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+outline: none;
+}
+
+/* Remove default background and border-radius for button elements */
+button {
+background: none;
+border: none;
+}
+
+/* Remove default border for textarea elements */
+textarea {
+border: none;
+}
+
+/* Remove default border for select elements */
+select {
+-webkit-appearance: none;
+-moz-appearance: none;
+appearance: none;
+border: none;
+background: transparent;
+padding-right: 1em;
+background-image: url('data:image/svg+xml;charset=utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="5" viewBox="0 0 10 5"><path fill="black" d="M5 0l5 5H0z"/></svg>');
+background-repeat: no-repeat;
+background-position-x: calc(100% - 0.5em);
+background-position-y: center;
+}
+
+/* Clear floats */
+.clearfix::after {
+content: "";
+display: table;
+clear: both;
+}
+
+/* Hide visually but remain accessible */
+.sr-only:not(:focus):not(:active) {
+position: absolute;
+width: 1px;
+height: 1px;
+padding: 0;
+margin: -1px;
+overflow: hidden;
+clip: rect(0, 0, 0, 0);
+border: 0;
+}
+
+/* End Reset CSS */

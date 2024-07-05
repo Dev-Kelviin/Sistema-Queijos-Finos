@@ -1,0 +1,137 @@
+.sectionForms{
+    display: none;
+    background: white; 
+    padding: 20px;
+    border: 1px solid #ffffff;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    margin-top: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    flex-wrap: wrap; 
+    gap: 10px; 
+    justify-content: flex-end;
+
+}
+
+.sectionList{
+    width: 98%;
+    margin-top: 20px;
+    padding: 10px 20px 5px;
+    box-shadow: 1px 4px 5px 0px rgba(0,0,0,0.75);
+    justify-content: flex-end;
+
+}
+
+.row{
+    display: flex;
+}
+
+.row-element-25{
+    padding: 0 5px;
+}
+
+.titleForm {
+    text-align: center;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.sectionForms form {
+    display: grid;
+    grid-gap: 5px; 
+    align-items: end;
+}
+
+.sectionForms label {
+    font-weight: bold;
+    margin-bottom: 1px;
+    display: block;
+}
+
+.sectionForms input[type="text"],
+.sectionForms input[type="date"],
+.sectionForms select {
+    flex: 1 1 40%; 
+    padding: 10px;
+    margin-bottom: 1px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.sectionForms input[type="file"] {
+    width: 100%;
+    padding: 70px;
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+    .popupAdicionar{
+        width: 25%;
+        max-width: 500px;
+        border-radius: 20px;
+        background-color:white;
+        text-align: center;
+        padding: 30px;
+        box-shadow: 3px 4px 20px 7px rgba(0,0,0,0.75); 
+    }
+
+    .popupAdicionarp{
+        padding-top: 20px;
+        padding-bottom: 10px;
+        justify-content: flex-end;
+    }
+
+   .popupAdicionardiv{
+        justify-content: flex-end;
+   }
+
+   .popupAdicionarbutton{
+    width: 35%;
+   }
+
+   .buttonPopupAlertCancel{
+     background-color: var(--backgroundBottonCancelPopup);
+   }
+
+   .buttonPopupAlertCancel:hover{
+    background-color: var( --backgroundBottonCancelPopupHover );
+   }
+
+   .buttonPopupAlertExit{
+    background-color: var(--backgroundBottonCancelHover);
+   }
+
+   .buttonPopupAlertExit:hover{
+    background-color: var(--backgroundBottonExitHover);
+   }
+
+   .buttonCancel{
+    border: 2px solid var(--backgroundBottonCancelHover);
+    color: var(--backgroundBottonCancelHover);
+    justify-content: flex-end;
+
+}
+
+    .buttonCancel:hover{
+    background-color: var(--backgroundBottonCancelHover);
+    color: white;
+    justify-content: flex-end;
+}
+.buttonSave{
+    background-color: var(--backgroudBottonSave);
+    border: 2px solid var(--backgroudBottonSave);
+    justify-content: flex-end;
+
+
+}
+
+.buttonSave:hover{
+    background-color: var(--backgroudBottonSaveHover);
+    border: 2px solid var(--backgroudBottonSaveHover);
+    justify-content: flex-end;
+
+}
+
+.buttonSave img{
+    height: 1rem;
+}

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="PT-br" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap"
+        rel="stylesheet">
+    <title>Gerenciamento de Tecnologias</title>
+    <link rel="stylesheet" th:href="@{/style/reset.css}">
+    <link rel="stylesheet" th:href="@{/style/style.css}">
+    <link rel="stylesheet" th:href="@{/style/navBar/styleNavBarLeft.css}">
+    <link rel="stylesheet" th:href="@{/style/navBar/styleNavBarHeader.css}">
+    <link rel="stylesheet" th:href="@{/style/styleTechnology.css}">
+</head>
+
+<body>
+
+    <section class="sectionPopup">
+        <section th:if="${condition}" th:insert="popups/savePopup"></section>
+        <section th:insert="popups/savePopup" style="display: none;" class="popupAlertSave"></section>
+<!--        <section th:insert="popups/alertPopupDelet" class="popupAlertDelet" style="display: none;"></section>-->
+        <section th:insert="popups/alertPopupForm" id="popupAlertForm" class="teste" style="display: none"></section>
+    </section>
+
+    <main class="gridContainerBody">
+
+        <nav class="navBarLeft">
+            <section class="logo"><img src="images/logo/logoCerto.png" alt="logo queijos finos"></section>
+            <section class="listLinksNav">
+                <ul class="listLinks">
+                    <li><a href="/dashboardProducer"><img src="images/icons/Vector.svg" alt=""> Dashboard</a></li>
+                    <li><a href="/producers"><img src="images/icons/producerVetor.svg" alt=""> Produtores</a></li>
+                    <li class="listSelect"><a href="/tecnologias"><img src="images/icons/cheeseVetorWhite.svg" alt=""> Cadastor Tecnologias</a></li>
+                    <li><a href="/users"><img src="images/icons/configVetor.svg" alt=""> Configurações</a></li>
+                </ul>
+            </section>
+        </nav>
+
+        <section class="sectionPrincipal flexContainercolum">
+
+            <nav class="navBarHeader">
+                <ul class="navBarHeaderList">
+                    <li><img src="images/icons/notificationvetor.svg" alt="icone de notificações"></li>
+                    <li><img src="images/icons/configVetorWhite.svg" alt="icone de configurações"></li>
+                </ul>
+
+                <ul class="navBarHeaderList navBarHeaderListLow">
+                    <li>CADASTRO DE TECNOLOGIAS</li>
+                    <li>administrador</li>
+                </ul>
+            </nav>
+
+            <section id="sectionForm" class="sectionForms sectionList">
+                <h4 class="titleForm title-form">TECNOLOGIAS</h4>
+
+
+                <form th:object="${technology}">
+
+                    <input type="number" name="id" th:field="*{id}" style="display: none;">
+
+                    <div class="form-group ">
+                        <label for="name">Nome:</label>
+                        <input type="text" id="name" name="name" th:field="*{name}"
+                            placeholder="Digite o nome da tecnologia" th:required="true">
+                    </div>
+                    <div class="formButtons flexContainerRowBetween">
+                        <button id="buttonCancel" class="buttons buttonCancel" type="button">X Cancelar</button>
+                        <button class="buttons buttonSave" type="submit"><img src="images/icons/icons8-done.svg"
+                                alt="">Salvar</button>
+                    </div>
+                </form>
+            </section>
+
+
+            <section class="sectionList">
+                <section class="flexContainerRowBetween sectionListHeader">
+                    <p>Tecnologias</p>
+                    <button id="buttonAdd" data-page="technology" class="buttons buttonAdd">&#43; Adicionar</button>
+                </section>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Produzindo</th>
+                            <th>Complementação</th>
+                            <th>Abortado</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr th:each="entry : ${report}">
+
+                            <td class="highlight-name"  th:text="${entry.value['technologyName']}"></td> <!-- Nome da tecnologia -->
+                            <td th:text="${entry.value['PRODUCING'] != null ? entry.value['PRODUCING'] : 0}"></td>
+                            <td
+                                th:text="${entry.value['COMPLEMENTATION'] != null ? entry.value['COMPLEMENTATION'] : 0}">
+                            </td> 
+                            <td th:text="${entry.value['WITHDRAWAL'] != null ? entry.value['WITHDRAWAL'] : 0}"></td>
+                            
+                            <td>
+                                <button class="editButton">
+                                    <img src="images/icons/iconEdit.svg" alt="">
+                                </button>
+
+                                <button type="button" class="delete-btn" th:data-id='${entry.key}'>
+                                    <img src="images/icons/iconDelete.svg" alt="">
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </section>
+
+            <script>
+
+                document.querySelectorAll('.delete-btn').forEach(button => {
+                    button.addEventListener('click', () => {
+                        const technologyId = button.getAttribute('data-id');
+                        const alertPopupDelet = document.querySelector(".popupAlertDelet");
+                        const sectionPopup = document.querySelector(".sectionPopup");
+                        
+
+                        sectionPopup.style.display = "block";
+                        alertPopupDelet.style.display = "block";
+                        
+                        document.getElementById("buttonPopupAlertDelet").addEventListener("click", () => {
+                            deleteUser(technologyId);
+                        });
+
+                    });
+                });
+
+                function deleteUser(Id) {
+                   
+                    
+                    fetch('technology/' + Id, {
+                        method: 'PUT'
+                    })
+                        .then(response => {
+                            if (response.ok) {
+                                window.location.href = '/tecnologias';
+                            } 
+                        })
+                        .catch(error => {
+                            console.error('Erro ao executar a requisição:', error);
+                        });
+                }
+
+
+            </script>
+
+
+            <script src="script/opemCloseForm.js"></script>
+            <script src="script/editTechnology.js"></script>
+
+
+
+</body>
+
+</html>

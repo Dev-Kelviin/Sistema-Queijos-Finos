@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="PT-br" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap"
+        rel="stylesheet">
+    <title>Dados do Produtor</title>
+    <link rel="stylesheet" th:href="@{/style/reset.css}">
+    <link rel="stylesheet" th:href="@{/style/style.css}">
+    <link rel="stylesheet" th:href="@{/style/navBar/styleNavBarLeft.css}">
+    <link rel="stylesheet" th:href="@{/style/navBar/styleNavBarHeader.css}">
+    <link rel="stylesheet" th:href="@{/style/styleUsers.css}">
+    <link rel="stylesheet" th:href="@{/style/styleDashboardProducerData.css}">
+</head>
+
+<body>
+
+    <section class="sectionPopup">
+        <section th:if="${condition}" th:insert="popups/savePopup"></section>
+        <section th:insert="popups/alertPopupDelet" class="popupAlertDelet" style="display: none;"></section>
+        <section th:insert="popups/alertPopupForm" id="popupAlertForm" class="teste" style="display: none"></section>
+    </section>
+
+    <main class="gridContainerBody">
+        <nav class="navBarLeft">
+            <section class="logo"><img th:src="@{/images/logo/logoCerto.png}" alt="logo queijos finos"></section>
+            <section class="listLinksNav">
+                <ul class="listLinks">
+                    <li><a href="/dashboardProducer"><img th:src="@{/images/icons/Vector.svg}" alt=""> Dashboard</a></li>
+                    <li class="listSelect"><a href="/producers"><img th:src="@{/images/icons/producerVetorWhite.svg}"
+                                alt=""> Produtores</a></li>
+                    <li><a href="/tecnologias"><img th:src="@{/images/icons/cheeseVetor.svg}" alt=""> Cadastor
+                            Tecnologias</a></li>
+                    <li><a href="/users"><img th:src="@{/images/icons/configVetor.svg}" alt=""> Configurações</a></li>
+                </ul>
+            </section>
+        </nav>
+
+        <section class="sectionPrincipal flexContainercolum">
+
+            <nav class="navBarHeader">
+                <ul class="navBarHeaderList">
+                    <li><img src="images/icons/notificationvetor.svg" alt="icone de notificações"></li>
+                    <li><img src="images/icons/configVetorWhite.svg" alt="icone de configurações"></li>
+                </ul>
+
+                <ul class="navBarHeaderList navBarHeaderListLow">
+                    <li>Dados do Produtor</li>
+                    <li>administrador</li>
+                </ul>
+            </nav>
+
+            <section th:object= "${producers[0]}" class="section-button flexContainerRowBetween">
+                <button><a th:href="@{/editProducer/{producerId}(producerId=${producers[0].id})}">Editar Dados</a></button>
+                <button><a th:href="@{/documents/{producerId}(producerId=${producers[0].id})}">Documentos</a></button>
+                <button><a th:href="@{/transfer/{producerId}(producerId=${producers[0].id})}">Transferencia</a></button>
+            </section>
+
+            <section th:object="${producers[0]}" class="producer-section sectionList">
+
+                <div class="producer-info">
+                    <div class="producer-details">
+
+                        <h4 th:text="${producers[0].name}" class="producer-name">joao teste teste</h4>
+                        <h5 th:text="${producers[0].socialReason}" class="business-name">Queijos sublimes</h5>
+
+                        <p class="phone-number">Telefone: <span th:text="${producers[0].phone}">(44) 0 0000-0000</span></p>
+                        <p class="phone-number">Telefone: <span th:text="${producers[0].phone}">(44) 0 0000-0000</span></p>
+                    </div>
+                    <div class="identifiers">
+                        <p class="cpf">CPF: <span th:text="${producers[0].cpf}"></span></p>
+                        <p class="cnpj">CNPJ: <span th:text="${producers[0].cnpj}"></span></p>
+                    </div>
+                </div>
+
+
+                <div class="location-info">
+                    <p class="location">
+                        Localização
+                    </p>
+                    <p class="address">
+                        Endereço: <span th:text="${producers[0].street}"></span>
+                        <span th:text="${producers[0].number != null ? ', ' + producers[0].number : 'n/a'}"></span> -
+                        <span th:text="${producers[0].neighborhood}"></span> -
+                        <span th:text="${producers[0].city}"></span>/<span th:text="${producers[0].state}"></span> -
+                        CEP: <span th:text="${producers[0].cep}"></span>
+                    </p>
+                </div>
+            </section>
+            
+            <section class="section-certificate">
+                <h5 class="title-section">Certificações</h5>
+                <div class="section-certificate-seta">
+                   
+                    <div th:each="certificate, iterStat : ${certificates}">
+                       
+                        <div th:class="'seta-retangulo ' + ${certificate.tipoCertificado.cssClass}">
+                            <p th:text="${certificate.tipoCertificado.descricao}">Descrição do Certificado</p>
+                        </div>
+                        
+                        <div th:class="'seta-triangulo ' + ${certificate.tipoCertificado.cssClass}"
+                             th:classappend="${iterStat.last} ? ' seta-triangulo-ultima' : ''">
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            
+
+            <section th:if= "${producers[0]}" class="sectionList section-comments">
+
+                <h5 class="title-section">Obcervações:</h5>
+
+                <p th:text="${producers[0].observation != null ? producers[0].observation : 'Produtor não possui observações cadastradas'}"></p>
+
+
+            </section>
+
+        </section>
+
+    </main>
+    <script th:src="@{/script/editUser.js}"></script>
+    <script th:src="@{/script/opemCloseForm.js}"></script>
+    <script th:src="@{/script/validatePassword.js}"></script>
+    <script th:src="@{/script/deleteUser.js}"></script>
+
+</body>
+
+</html>

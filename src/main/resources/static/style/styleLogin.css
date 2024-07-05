@@ -1,0 +1,136 @@
+:root{
+    --color-blue: #132f3e;
+    --collor-white: #fdfcf9;
+    --color-gray: #808080;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: "Nunito", sans-serif;
+    color: var(--collor-white);
+    background-image: url(../images/queijosTop1.jpg);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.content{
+    background-color: var(--color-blue);
+    padding: 3rem;
+    border-radius: 20px;
+    width: 25%;
+}
+
+h1{
+    font-family: "Libre Caslon Text";
+}
+
+.titulo1{
+    text-align: center;
+    font-size: 6rem;
+}
+
+.titulo2{
+    text-align: center;
+    font-size: 4rem;
+    margin-bottom: 15rem;
+}
+
+.content form{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.inputs{
+    padding: 8px 5px;
+    margin-top: 1rem;
+    background-color: var(--color-blue);
+    border: 2px solid var(--color-gray);
+    color: var(--collor-white);
+    width: 100%;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    transition: .5s;
+    font-size: 18px;
+}
+
+.box-select{
+    font-size: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center; 
+}
+
+.box-select p {
+    margin: 0; 
+}
+
+a{
+    color: var(--collor-white); 
+    text-decoration: none; 
+}
+
+button[type="submit"] {
+    color: var(--color-blue);
+    font-weight: bold;
+    width: 30%;
+    padding: 1rem;
+    margin: auto; 
+    font-size: 20px;
+    border: none;
+    border-radius: 10px;
+    margin-top: 2rem;
+    background-color: #ffffff;
+    font-family: "Nunito", sans-serif;
+    cursor: pointer;
+    transition: .3s;
+}
+
+button[type="submit"]:hover{
+    font: var(--collor-white);
+    background-color: gray;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.span-required{
+    display: none;
+    font-size: 18px;
+    color: red;
+}
+
+input:focus::placeholder {
+    color: var(--collor-white);
+    transition: .5s;
+}
+
+.inputs:focus{
+    border-color:var(--collor-white);
+    transition: .5s;
+    outline: none; 
+}
+
+input:not(:focus) {
+    color: var(--color-gray);
+    
+}
+
+.loginError{
+    font-size: 18px;
+    color: red;
+    
+}

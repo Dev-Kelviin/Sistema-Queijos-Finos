@@ -1,0 +1,60 @@
+.navBarLeft {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    border-right: 2px solid #000000;
+    background-color: var(--backgroudNavBar);
+    padding-top: 20px;
+}
+
+.logo {
+    margin-top: 20px;
+    display: block;
+    text-align: center;
+}
+
+.logo img {
+    width: 90%;
+}
+
+.listLinksNav {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.listLinks {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+
+.listLinks li {
+    width: 100%;
+}
+
+.listLinks li a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 1rem;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.listLinks li img {
+    width: 2rem;
+    padding-right: 10px;
+}
+
+.listLinks li a:hover {
+    background-color: var(--hoverNavBarLink);
+    color: white;
+}
+
+.listSelect a {
+    background-color: var(--activeNavBarLink);
+    color: white; 
+}

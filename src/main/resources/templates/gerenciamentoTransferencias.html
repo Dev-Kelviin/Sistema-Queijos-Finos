@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="PT-br" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap"
+        rel="stylesheet">
+    <title>Gerenciamento de Transferências</title>
+    <link rel="stylesheet" th:href="@{/style/reset.css}">
+    <link rel="stylesheet" th:href="@{/style/style.css}">
+    <link rel="stylesheet" th:href="@{/style/navBar/styleNavBarLeft.css}">
+    <link rel="stylesheet" th:href="@{/style/navBar/styleNavBarHeader.css}">
+    <link rel="stylesheet" th:href="@{/style/styleTransfer.css}">
+    <link rel="stylesheet" th:href="@{/style/styleEditProducer.css}">
+    <link rel="stylesheet" th:href="@{/style/styleDashboardProducerData.css}">
+    <link rel="stylesheet" th:href="@{/style/popups/stylePopups.css}">
+
+</head>
+<body>
+    <section class="sectionPopup">
+        <section th:if="${condition}" th:insert="popups/savePopup"></section>
+        <section th:insert="popups/alertPopupDelet" class="popupAlertDelet" style="display: none;"></section>
+        <section th:insert="popups/alertPopupForm" id="popupAlertForm" class="teste" style="display: none"></section>
+    </section>
+
+    <main class="gridContainerBody">
+
+        <nav class="navBarLeft">
+            <section class="logo"><img th:src="@{/images/logo/logoCerto.png}" alt="logo queijos finos"></section>
+            <section class="listLinksNav">
+                <ul class="listLinks">
+                    <li><a href="/dashboardProducer"><img th:src="@{/images/icons/Vector.svg}" alt=""> Dashboard</a></li>
+                    <li class="listSelect"><a href="/producers"><img th:src="@{/images/icons/producerVetorWhite.svg}" alt=""> Produtores</a></li>
+                    <li id="tecnologiesLink"><a href="/tecnologias"><img th:src="@{/images/icons/cheeseVetor.svg}" alt="">  Cadastor Tecnologias</a></li>
+                    <li><a href="/users"><img th:src="@{/images/icons/configVetor.svg}" alt=""> Configurações</a></li>
+                </ul>
+            </section>
+        </nav>
+
+        <!--      ALTERIREI A NAV BAR DEXEI AQUI CASO PRECISE  
+            <nav class="navBarLeft">
+                <section class="logo"><img th:src="@{/images/logo/logoCerto .png}" alt="logo queijos finos"></section>
+                <section class="listLinksNav">
+                    <ul class="listLinks">
+                        <li id="dashboardLink"><img th:src="@{/images/icons/Vector.svg}" alt=""> Dashboard</li>
+                        <li id="producersLink"><img th:src="@{/images/icons/producerVetor.svg}" alt=""> Produtores</li>
+                        <li class="listSelect" id="tecnologiesLink"><img th:src="@{/images/icons/cheeseVetor.svg}" alt=""> Cadastor Tecnologias</li>
+                        <li id="configurationLink"><img th:src="@{/images/icons/configVetor.svg}" alt="">Configurações</li>
+                    </ul>
+                </section>
+            </nav>
+        -->
+
+        <section class="sectionPrincipal flexContainercolum">
+            <nav class="navBarHeader">
+                <ul class="navBarHeaderList">
+                    <li><img th:src="@{/images/icons/notificationvetor.svg}" alt="icone de notificações"></li>
+                    <li><img th:src="@{/images/icons/configVetorWhite.svg}" alt="icone de configurações"></li>
+                </ul>
+
+                <ul class="navBarHeaderList navBarHeaderListLow">
+                    <li>GERENCIAMENTO DE TRANSFERÊNCIAS</li>
+                    <li>administrador</li>
+                </ul>
+            </nav>
+            <div style="width: 100%;">
+                <section class="section-button flexContainerRowBetween">
+                    <button id="editButton">Editar Dados</button>
+                    <button id="documentsButton">Documentos</button>
+                    <button id="transferenceButton" style="background-color: var(--backgroudNavBarHead); color: white;">Transferencia</button>
+                </section>
+            </div>
+            <section id="sectionForm" class="sectionForms sectionList" th:if="${transfer}">
+                <h4 class="titleForm"></h4>
+                <form th:object="${transfer}" id="transferForm">
+                    <input type="hidden" th:field="*{id}">
+                    <div class="topIpunts">
+                        <label for="tecnologia">Tecnologia:</label>
+                        <select th:field="*{technology.id}" id="tecnologia" name="tecnologia" th:required="true">
+                            <option value=""
+                                th:text="(${technologies} != null and ${technologies.size()} > 0) ? 'Selecione uma tecnologia' : 'Nenhuma tecnologia cadastrada'">
+                            </option>
+                            <option th:each="technology : ${technologies}" th:value="${technology.id}"
+                                th:text="${technology.name}"></option>
+                        </select>
+                        <label for="situacao">Situação:</label>
+                        <select th:field="*{tipoStatusProduction}" id="situacao" name="situacao" th:required="true">
+                            <option value="PRODUCING" th:selected="${transfer.tipoStatusProduction == 'PRODUCING'}">Produzindo</option>
+                            <option value="COMPLEMENTATION" th:selected="${transfer.tipoStatusProduction == 'COMPLEMENTATION'}">Em complementação</option>
+                            <option value="WITHDRAWAL" th:selected="${transfer.tipoStatusProduction == 'WITHDRAWAL'}">Desistente</option>
+                        </select>
+                    </div>
+    
+                    <div class="bottomInputs">
+                        <label for="data_inicio">Data Início:</label>
+                        <input type="date" th:field="*{startDate}" id="data_inicio" name="data_inicio"
+                            th:required="true" min="2024-01-01">
+                        <label for="data_conclusao">Data Conclusão:</label>
+                        <input type="date" th:field="*{completionDate}" id="data_conclusao" name="data_conclusao"
+                            th:required="true" min="2024-01-01">
+                    </div>
+    
+                    <div class="formButtons flexContainerRowBetween">
+                        <button id="buttonCancel" class="buttons buttonCancel" type="button">X Cancelar</button>
+                        <button class="buttons buttonSave" type="submit"><img th:src="@{/images/icons/icons8-done.svg}" 
+                                alt=""> Salvar</button>
+                    </div>
+                </form>
+            </section>
+
+            <section class="sectionList">
+                <section class="flexContainerRowBetween sectionListHeader">
+                    <p>TECNOLOGIAS ATRIBUÍDAS AO PRODUTOR</p>
+                    <button id="buttonAdd" data-page="transfer" class="buttons buttonAdd">&#43; Adicionar</button>
+                </section>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Tecnologia</th>
+                            <th>Situação</th>
+                            <th>Data Início</th>
+                            <th>Data Conclusão</th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        <tr th:each="transfer : ${transfers}">
+                            <td th:text="${transfer.id}" style="display: none;"></td>
+                            <td th:text="${transfer.technology.name}"></td>
+                            <td th:text="${transfer.tipoStatusProduction}"></td>
+                            <td th:text="${transfer.startDate}"></td>
+                            <td th:text="${transfer.completionDate}"></td>
+                            <td>
+                                <button class="editButton"><img th:src="@{/images/icons/iconEdit.svg}"
+                                        alt="Botão de editar transferência"></button>
+                                <button type="button" class="delete-btn" th:data-id='${transfer.id}'>
+                                    <img th:src="@{/images/icons/iconDelete.svg}" alt="Botão de deletar transferência">
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <script th:src="@{/script/navRedirectProducer.js}"></script>
+            <script th:src="@{/script/opemCloseForm.js}"></script>
+            <script th:src="@{/script/editTransfer.js}"></script>
+            <script th:src="@{/script/closePopup.js}"></script>
+            <script th:src="@{/script/navbarRedirect.js}"></script>
+</body>
+
+</html>

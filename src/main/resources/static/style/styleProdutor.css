@@ -1,0 +1,51 @@
+.camposFormulario{
+    display:flex;
+    flex-direction: column;
+}
+
+.formularioProdutor{
+    background-color: #222222;
+}
+
+.campos-form.input{
+    padding: 10px;
+}
+
+.labelWithInput{
+    display: flex;
+    align-itens: center;
+}
+
+input{
+    border: 2px solid black;
+}
+
+/* Arquivo: inlineStyles.css */
+
+/* Estilo para o logo */
+.logo img {
+    width: 100%;
+}
+
+/* Estilo para os ícones das listas de links */
+.listLinksNav ul li img {
+    margin-right: 10px;
+}
+
+/* Estilo para a linha do produtor */
+#linhaProdutor {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#linhaProdutor img {
+    width: 60%;
+    height: 60%;
+}
+
+/* Estilo para o body */
+body {
+    padding: 0px;
+    margin: 0px;
+}

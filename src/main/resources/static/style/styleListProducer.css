@@ -1,0 +1,30 @@
+
+.filter-button {
+    display: block;
+    padding: 7px 30px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.filter-button:hover {
+    background-color: #0056b3;
+}
+
+.contaner-button{
+    width: 100%; display: flex;
+    justify-content: flex-end; 
+    margin-top: 30px;
+}
+
+.date-active{
+    color: green;
+    text-transform: capitalize;
+}
+
+.date-expired{
+    color: red;
+    text-transform: capitalize;
+}

@@ -1,0 +1,17 @@
+<head>
+    <link rel="stylesheet" th:href="@{/style/popups/stylePopups.css}">
+</head>
+
+<section th:fragment="popupAlert" id="popupDeletProducer" class="sectionPopupSave">
+    <div class="popupSave">
+        <img th:src="@{/images/icons/iconInterrogation.svg}" alt="icone salvar">
+        <p>Deseja excluir esses produtor?</p>
+
+        <div class="flexContainerRowBetween" >
+            <button onclick="closePopups()"  class="buttonPopup buttons buttonPopupAlert buttonPopupAlertCancel ">Cancelar</button>
+            <button  id="buttonDeleteProducer" class="buttons buttonPopupAlert buttonPopupAlertExit">Deletar</button>
+        </div>
+    </div>
+
+    <script th:src="@{/script/closePopup.js}"></script>
+</section>

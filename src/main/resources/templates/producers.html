@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="PT-br" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap"
+        rel="stylesheet">
+    <title>Produtores</title>
+    <link rel="stylesheet" href="style/reset.css">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/styleUsers.css">
+    <link rel="stylesheet" href="style/navBar/styleNavBarLeft.css">
+    <link rel="stylesheet" href="style/navBar/styleNavBarHeader.css">
+    <link rel="stylesheet" href="style/styleListProducer.css">
+</head>
+
+<body>
+
+
+
+    <main class="gridContainerBody">
+
+        <nav class="navBarLeft">
+            <section class="logo"><img src="images/logo/logoCerto.png" alt="logo queijos finos"></section>
+            <section class="listLinksNav">
+                <ul class="listLinks">
+                    <li><a href="/dashboardProducer"><img src="images/icons/Vector.svg" alt=""> Dashboard</a></li>
+                    <li class="listSelect"><a href="/producers"><img src="images/icons/producerVetorWhite.svg" alt=""> Produtores</a></li>
+                    <li><a href="/tecnologias"><img src="images/icons/cheeseVetor.svg" alt=""> Cadastor Tecnologias</a></li>
+                    <li><a href="/users"><img src="images/icons/configVetor.svg" alt=""> Configurações</a></li>
+                </ul>
+            </section>
+        </nav>
+
+        <section class="sectionPrincipal flexContainercolum">
+
+            <nav class="navBarHeader">
+                <ul class="navBarHeaderList">
+                    <li><img src="images/icons/notificationvetor.svg" alt="icone de notificações"></li>
+                    <li><img src="images/icons/configVetorWhite.svg" alt="icone de configurações"></li>
+                </ul>
+
+                <ul class="navBarHeaderList navBarHeaderListLow">
+                    <li>Lista de Produtores</li>
+                    <li>administrador</li>
+                </ul>
+            </nav>
+
+            <section style="display: block;" id="sectionForm" class="sectionForms sectionList">
+
+                <h4 class="title-form">Buscar por:</h4>
+                
+                <form th:action="@{/filterProducer}" method="GET" th:object="${producerFilterDto}"
+                    class="form-container">
+                    <div class="form-group">
+                        <label for="name-producer">Nome do Produtor:</label>
+                        <input type="text" id="name-producer" name="nameProducer">
+                        
+                        <label for="city">Cidade:</label>
+                        <input type="text" id="city" name="city">
+                       
+                        <label for="technology-name">Tecnologia:</label>                      
+                        <select id="technology-name" name="technologyName">
+                            <option value=""
+                                th:text="(${technologies} != null and ${technologies.size()} > 0) ? 'Selecione uma tecnologia' : 'Nenhuma tecnologia cadastrada'">
+                            </option>
+                            <option th:each="technology : ${technologies}" th:value="${technology.name}"
+                                th:text="${technology.name}">
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="production-status">Status de Produção:</label>
+                        <select id="production-status" name="status">
+                            <option value="">Selecione...</option>
+                            <option id="Ativo">Ativo</option>
+                            <option id="Ativo em complementação">Ativo em complementação</option>
+                            <option id="Desistente">Desistente</option>
+                        </select>
+                        <label for="certificate-type">Tipo de Certificado:</label>
+                        <select id="certificate-type" name="tipoCertificado">
+                            <option value="">Selecione...</option>
+                            <option value="SUSAF">SUSAF</option>
+                            <option value="SISBI">SISBI</option>
+                            <option value="SELO_ARTE">SELO/ARTE</option>
+                            <option value="SIF">SIF</option>
+                        </select>
+
+                        <div class="contaner-button">
+                            <button type="submit" class="filter-button">Filtrar</button>
+                        </div>
+
+                    </div>
+
+
+                </form>
+
+            </section>
+
+
+            <section class="sectionList">
+
+
+                <section class="flexContainerRowBetween sectionListHeader">
+                    <p>Produtores</p>
+                    <button id="buttonAdd" class="buttons buttonAdd"><a class="button-link" href="/formProducer">&#43; Adicionar</a></button>
+                </section>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Contrato</th>
+                            <th>Status Produção</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="producer : ${isFilter eq 'true' ? producersFilter : producers}">
+                            <td class="flexContainerRowBetween"> <img class="imageTable"
+                                    src="images/icons/producerVetor.svg" alt="Imagem do Produtor">
+                                <span th:text="${producer.nameProducer}">Nome do Produtor</span>
+                            </td>
+                            <td th:class="${producer.class == 'active' ? 'date-active' : 'date-expired'}"  th:text="${producer.expirationDate}">Contrato</td>
+                            <td th:text="${producer.status}">Status de Produção</td>
+                            <td><a th:href="@{/dashboardProducerDate/{producerId}(producerId=${producer.id})}"><img src="images/icons/toView.svg" alt=""></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </section>
+
+        </section>
+
+    </main>
+
+
+    <script src="script/opemForm.js"></script>
+    <script src="script/validatePassword.js"></script>
+    <script src="script/deleteUser.js">
+
+
+    </script>
+
+</body>
+
+
+    <script>
+        const linhaProdutor = document.querySelectorAll("#linhaProdutor").forEach(produtor => {
+            produtor.addEventListener("click", () => {
+                const producerId = produtor.getAttribute('data-id');
+                console.log(producerId)
+                window.location.replace("editProducer/" + producerId)
+            })
+        })
+
+        const buttonDelete = document.querySelectorAll("#buttonDelete").forEach(botao => {
+            botao.addEventListener("click", () => {
+                const producerId = botao.getAttribute('data-id');
+                console.log("teste", producerId)
+                deleteProducer(producerId)
+            })
+        })
+
+        function deleteProducer(producerId) {
+            console.log("teste", producerId)
+            if (confirm("Tem certeza de que deseja excluir este usuário?")) {
+                fetch('/produtores/' + producerId, {
+                    method: 'GET'
+                }).then(response => {
+                    if (response.ok) {
+                        window.location.reload();
+                    } else {
+                        alert('Falha ao excluir o produtor.');
+                    }
+                }).catch(error => {
+                    console.error('Erro ao excluir o produtor:', error);
+                    alert('Erro ao excluir o produtor. Por favor, tente novamente mais tarde.');
+                });
+            }
+        }
+    </script>
+    <script th:src="@{/script/navbarRedirect.js}"></script>
+
+</html>

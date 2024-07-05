@@ -1,0 +1,18 @@
+<head>
+    <link rel="stylesheet" th:href="@{/style/popups/stylePopups.css}">
+</head>
+
+<section th:fragment="popupAlert" id="popupAlertForm" class="sectionPopupSave">
+
+    <div class="popupSave">
+        <img th:src="@{/images/icons/iconInterrogation.svg}" alt="icone salvar">
+        <p>Deseja sair sem salvar? Os Documentos alterados seram perdidos</p>
+        
+        <div class="flexContainerRowBetween" >
+            <button onclick="closePopups()"  class="buttonPopup buttons buttonPopupAlert buttonPopupAlertCancel ">Cancelar</button>
+            <button  id="buttonPopupAlertExit" class="buttons buttonPopupAlert buttonPopupAlertExit">Sair</button>
+        </div>
+    </div>
+
+    <script th:src="@{/script/closePopup.js}"></script>
+</section>

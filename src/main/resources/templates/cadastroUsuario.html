@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="PT-br" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap"
+        rel="stylesheet">
+    <title>Cadastro de Usuários</title>
+    <link rel="stylesheet" href="style/reset.css">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/navBar/styleNavBarLeft.css">
+    <link rel="stylesheet" href="style/navBar/styleNavBarHeader.css">
+    <link rel="stylesheet" href="style/styleUsers.css">
+
+</head>
+
+<body>
+
+    <section class="sectionPopup">
+        <section th:if="${condition}" th:insert="popups/savePopup"></section>
+        <section th:insert="popups/alertPopupDelet" class="popupAlertDelet" style="display: none;"></section>
+        <section th:insert="popups/alertPopupForm" id="popupAlertForm" class="teste" style="display: none"></section>
+    </section>
+
+    <main class="gridContainerBody">
+
+        <nav class="navBarLeft">
+            <section class="logo"><img src="images/logo/logoCerto.png" alt="logo queijos finos"></section>
+            <section class="listLinksNav">
+                <ul class="listLinks">
+                    <li><a href="/dashboardProducer"><img src="images/icons/Vector.svg" alt=""> Dashboard</a></li>
+                    <li><a href="/producers"><img src="images/icons/producerVetor.svg" alt=""> Produtores</a></li>
+                    <li><a href="/tecnologias"><img src="images/icons/cheeseVetor.svg" alt=""> Cadastor Tecnologias</a>
+                    </li>
+                    <li class="listSelect"><a href="/users"><img src="images/icons/configVetorWhite.svg" alt="">
+                            Configurações</a></li>
+                </ul>
+            </section>
+        </nav>
+
+        <section class="sectionPrincipal flexContainercolum">
+
+            <nav class="navBarHeader">
+                <ul class="navBarHeaderList">
+                    <li><img src="images/icons/notificationvetor.svg" alt="icone de notificações"></li>
+                    <li><img src="images/icons/configVetorWhite.svg" alt="icone de configurações"></li>
+                </ul>
+
+                <ul class="navBarHeaderList navBarHeaderListLow">
+                    <li>configurar usuário</li>
+                    <li>administrador</li>
+                </ul>
+            </nav>
+
+            <section id="sectionForm" class="sectionForms sectionList">
+
+                <h4 class="titleForm title-form">novo usuário</h4>
+                
+                <form th:object="${user}" class="form-container">
+
+                    <input id="id" name="id" th:field="*{id}" type="number" style="display: none;" value="1">
+            
+                    <div class="form-group">
+                        <label for="nome">Nome:</label>
+                        <input id="nameUser" name="nameUser" type="text" placeholder="Digite o nome"
+                            th:field="*{nameUser}" th:required="true">
+            
+                        <label for="password">Senha:</label>
+                        <input id="password" name="password" type="password" placeholder="Digite a senha"
+                            th:field="*{password}" th:required="true">
+                        <span class="erro-mensage" id="feedbackPassword"></span>
+            
+                        <label for="perfil">Perfil Usuário:</label>
+                        <select id="tipoUserPermission" name="tipoUserPermission" th:field="*{tipoUserPermission}"
+                            th:required="true">
+                            <option value="ADMINISTRATOR">Administrador</option>
+                            <option value="OPERATOR">Operador</option>
+                            <option value="OBSERVER">Observador</option>
+                        </select>
+                    </div>
+            
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input id="email" name="email" type="email" placeholder="ex: exemplo@emal.com"
+                            th:field="*{email}" th:required="true">
+                        <span class="erro-mensage erro-mensage-email" th:if="${mensagem}" th:text="${mensagem}"></span>
+            
+                        <label for="confirmPassword">Confirme a senha:</label>
+                        <input id="confirmPassword" name="confirmPassword" type="password" placeholder="confirme a senha" th:required="true">
+                        <span class="erro-mensage" id="feedbackConfirmPassword"></span>
+            
+                        <div class="formButtons flexContainerRowBetween">
+                            <button id="buttonCancel" class="buttons buttonCancel" type="button">X Cancelar</button>
+                            <button id="buttonSave" class="buttons buttonSave" type="submit"><img src="images/icons/icons8-done.svg" alt="">Salvar</button>
+                        </div>
+                    </div>
+                </form>
+                
+            </section>
+
+
+
+            <section class="sectionList">
+
+
+                <section class="flexContainerRowBetween sectionListHeader">
+                    <p>Usuários</p>
+                    <button id="buttonAdd" class="buttons buttonAdd">&#43; Adicionar</button>
+                </section>
+
+                <!-- Tabela de usuários -->
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Email</th>
+                            <th>Permissão</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="user : ${users}">
+                            <td class="highlight-name" th:text="${user.nameUser}">Nome do Usuário</td>
+                            <td th:text="${user.email}">Email do Usuário</td>
+                            <td th:text="${user.tipoUserPermission}">Permissão</td>
+                            <td>
+                                <button class="editButton"><img src="images/icons/iconEdit.svg" alt=""> </button>
+
+                                <button type="button" class="delete-btn" th:data-id='${user.id}'>
+                                    <img src="images/icons/iconDelete.svg" alt="">
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </section>
+
+        </section>
+
+    </main>
+    <script src="script/editUser.js"></script>
+   
+    <script class="userteste" th:if="${user2}" th:data-user="${#strings.escapeJavaScript(${user2})}"></script>
+   <script>
+        console.log('eue')
+        
+        let user2Data = document.querySelector('.userteste');
+        let userData = user2Data.dataset.user;
+
+        if(user2Data){
+            console.log('tetete');
+        }
+
+        console.log(userData.nameUser);
+        
+    </script>
+    
+    
+
+
+    <script src="script/opemCloseForm.js"></script>
+    <script src="script/validatePassword.js"></script>
+    <script src="script/deleteUser.js">
+
+
+    </script>
+
+</body>
+
+
+</html>

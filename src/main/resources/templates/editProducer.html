@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="PT-br" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" th:href="@{https://fonts.googleapis.com}">
+    <link rel="preconnect" th:href="@{https://fonts.gstatic.com}" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <title>Cadastro de Usuários</title>
+    <link rel="stylesheet" th:href="@{/style/reset.css}">
+    <link rel="stylesheet" th:href="@{/style/style.css}">
+    <link rel="stylesheet" th:href="@{/style/navBar/styleNavBarLeft.css}">
+    <link rel="stylesheet" th:href="@{/style/navBar/styleNavBarHeader.css}">
+    <link rel="stylesheet" th:href="@{/style/styleEditProducer.css}">
+    <link rel="stylesheet" th:href="@{/style/styleDashboardProducerData.css}">
+    <link rel="stylesheet" th:href="@{/style/popups/stylePopups.css}">
+
+</head>
+
+<body>
+<section class="sectionPopup">
+    <section th:insert="popups/alertPopupDeletProducer" class="popupAlertDelet" style="display: none;" ></section>
+    <section th:insert="popups/alertPopupForm" class="popupAlert" style="display: none;"></section>
+</section>
+<main class="gridContainerBody">
+
+    <nav class="navBarLeft">
+        <section class="logo"><img th:src="@{/images/logo/logoCerto.png}" alt="logo queijos finos"></section>
+        <section class="listLinksNav">
+            <ul class="listLinks">
+                <li><a href="/dashboardProducer"><img th:src="@{/images/icons/Vector.svg}" alt=""> Dashboard</a></li>
+                <li class="listSelect"><a href="/producers"><img th:src="@{/images/icons/producerVetorWhite.svg}" alt=""> Produtores</a></li>
+                <li id="tecnologiesLink"><a href="/tecnologias"><img th:src="@{/images/icons/cheeseVetor.svg}" alt="">  Cadastor Tecnologias</a></li>
+                <li><a href="/users"><img th:src="@{/images/icons/configVetor.svg}" alt=""> Configurações</a></li>
+            </ul>
+        </section>
+    </nav>
+    <!-- EDITEI NAV BAR DEIXEI AQUI CASO PRECISE
+        <nav class="navBarLeft">
+            <section class="logo"><img th:src="@{/images/logo/logoCerto .png}" alt="logo queijos finos"></section>
+            <section class="listLinksNav">
+                <ul class="listLinks">
+                    <li id="dashboardLink"><img th:src="@{/images/icons/Vector.svg}" alt=""> Dashboard</li>
+                    <li id="producersLink"><img th:src="@{/images/icons/producerVetor.svg}" alt=""> Produtores</li>
+                    <li id="tecnologiesLink"><img th:src="@{/images/icons/cheeseVetor.svg}" alt=""> Cadastor Tecnologias</li>
+                    <li id="configurationLink"><img th:src="@{/images/icons/configVetor.svg}" alt="">Configurações</li>
+                </ul>
+            </section>
+        </nav> 
+    -->
+    <section class="sectionPrincipal flexContainercolum">
+        <nav class="navBarHeader">
+            <ul class="navBarHeaderList">
+                <li><img th:src="@{/images/icons/notificationvetor.svg}" alt="icone de notificações"></li>
+                <li><img th:src="@{/images/icons/configVetorWhite.svg}" alt="icone de configurações"></li>
+            </ul>
+
+            <ul class="navBarHeaderList navBarHeaderListLow">
+                <li>Editar dados do produtor</li>
+                <li>Administrador</li>
+            </ul>
+        </nav>
+        <div class="contentEditProducer">
+            <section class="section-button flexContainerRowBetween">
+                <button id="editButton" style="background-color: var(--backgroudNavBarHead); color: white;">Editar Dados</button>
+                <button id="documentsButton">Documentos</button>
+                <button id="transferenceButton">Transferencia</button>
+            </section>
+            <form th:action="@{/editProducer/update/{producerId}(producerId=${producer.id})}" th:object="${producerDto}" method="post" class="producer-form">
+                <div class="campos-container">
+                    <div class="campos-form">
+                        <div>
+                            <label for="name">Nome completo</label>
+                            <input th:value="${producerDto.name}" name="name" id="name">
+                        </div>
+                        <div>
+                            <label for="cpf">CPF</label>
+                            <input th:value="${producerDto.cpf}" id="cpf" name="cpf">
+                        </div>
+                        <div>
+                            <label for="phone1">Telefone 1</label>
+                            <input th:value="${producerDto.phone1}" id="phone1" name="phone1">
+                        </div>
+                    </div>
+                    <div class="campos-form">
+                        <div>
+                            <label for="cnpj">CNPJ</label>
+                            <input th:value="${producerDto.cnpj}" id="cnpj" name="cnpj">
+                        </div>
+                        <div>
+                            <label for="socialReason">Razao Social</label>
+                            <input th:value="${producerDto.socialReason}" id="socialReason" name="socialReason">
+                        </div>
+                        <div>
+                            <label for="phone2">Telefone 2</label>
+                            <input th:value="${producerDto.phone2}" id="phone2" name="phone2">
+                        </div>
+                    </div>
+                    <div class="campos-form">
+                        <div>
+                            <label for="cep">CEP</label>
+                            <input th:value="${producerDto.cep}" id="cep" name="cep">
+                        </div>
+                        <div>
+                            <label for="street">Logradouro</label>
+                            <input th:value="${producerDto.street}" id="street" name="street">
+                        </div>
+                        <div>
+                            <label for="number">Numero</label>
+                            <input th:value="${producerDto.number}" id="number" name="number">
+                        </div>
+                    </div>
+                    <div class="campos-form">
+                        <div>
+                            <label for="neighborhood">Vila/Bairro</label>
+                            <input th:value="${producerDto.neighborhood}" id="neighborhood" name="neighborhood">
+                        </div>
+                        <div>
+                            <label for="email">Email</label>
+                            <input th:value="${producerDto.email}" id="email" name="email">
+                        </div>
+                        <div>
+                            <label for="state">UF</label>
+                            <input th:value="${producerDto.state}" id="state" name="state">
+                        </div>
+                        <div>
+                            <label for="city">Cidade</label>
+                            <input th:value="${producerDto.city}" id="city" name="city">
+                        </div>
+                    </div>
+                </div>
+                <div class="certifications-info">
+                    <div class="certifications">
+                        <h3>Certificações</h3>
+                        <div class="campoCertificationInfos">
+                            <label for="simPoa">SIM/POA</label>
+                            <input th:value="${producerDto.simPoa}" id="simPoa" name="simPoa" type="date">
+                        </div>
+                        <div class="campoCertificationInfos">
+                            <label for="susaf">SUSAF</label>
+                            <input th:value="${producerDto.susaf}" id="susaf" name="susaf" type="date">
+                        </div>
+                        <div class="campoCertificationInfos">
+                            <label for="sisbi">SISBI</label>
+                            <input th:value="${producerDto.sisbi}" id="sisbi" name="sisbi" type="date">
+                        </div>
+                        <div class="campoCertificationInfos">
+                            <label for="seloArte">SELO ARTE</label>
+                            <input th:value="${producerDto.seloArte}" id="seloArte" name="seloArte" type="date">
+                        </div>
+                        <div class="campoCertificationInfos">
+                            <label for="cif">CIF</label>
+                            <input th:value="${producerDto.cif}" id="cif" name="cif" type="date">
+                        </div>
+                    </div>
+                    <div class="contract-info">
+                        <h3>Informações sobre contrato</h3>
+                        <div class="campoCertificationInfos">
+                            <label for="signatureDate">Assinatura de Convenio de Cooperação Técnica</label>
+                            <input th:value="${producerDto.signatureDate}" id="signatureDate" name="signatureDate" type="date">
+                        </div>
+                        <div class="campoCertificationInfos">
+                            <label for="expirationDate">Vencimento de contrato</label>
+                            <input th:value="${producerDto.expirationDate}" id="expirationDate" name="expirationDate" type="date">
+                        </div>
+                        <div class="campoCertificationInfos">
+                            <label for="status">Situação no projeto</label>
+                            <select id="status" name="status">
+                                <option th:value="'Ativo'" th:text="'Ativo'" th:selected="${producerDto.status == 'Ativo'}">Ativo</option>
+                                <option th:value="'Ativo em complementação'" th:text="'Ativo em complementação'" th:selected="${producerDto.status == 'Ativo em complementação'}">Ativo em complementação</option>
+                                <option th:value="'Desistente'" th:text="'Desistente'" th:selected="${producerDto.status == 'Desistente'}">Desistente</option>
+                            </select>
+                        </div>
+                        <div class="campoCertificationInfos">
+                            <label for="statusDate">Data Situação</label>
+                            <input th:value="${producerDto.statusDate}" id="statusDate" name="statusDate" type="date">
+                        </div>
+                    </div>
+                </div>
+                <div class="observation-container">
+                    <h3>Observação</h3>
+                    <input th:value="${producerDto.observation}" id="observation" name="observation">
+                </div>
+                <div class="formButtons flexContainerRowBetween" style="display:flex; justify-content: space-between; gap: 10px;">
+                    <div>
+                        <button type="button" id="buttonDelet" style="display:flex; text-align: center; gap: 5px;" class="buttons buttonCancel"><img style="width: 20px;" th:src="@{/images/icons/trash.png}">Deletar Registro</button>
+                    </div>
+                    <div style="display:flex; gap: 10px;">
+                        <button id="buttonCancel" class="buttons buttonCancel" type="button">X Cancelar</button>
+                        <button class="buttons buttonSave"  type="submit" data-target="#submit"><img th:src="@{/images/icons/icons8-done.svg}" alt="">Salvar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</main>
+<script>
+    const closeFormButton = document.getElementById("buttonCancel");
+
+closeFormButton.addEventListener("click", () => {
+console.log("aaaaaa")
+
+const popupAlert = document.querySelector(".popupAlert");
+const sectionPopup = document.querySelector(".sectionPopup");
+const popup = document.getElementById("popupAlertForm");
+
+sectionPopup.style.display = "block";
+popupAlert.style.display = "block";
+popup.style.display = "flex";
+});
+
+const buttonDelet = document.getElementById("buttonDelet")
+
+buttonDelet.addEventListener("click", ()=>{
+
+const popupDelet = document.querySelector(".popupAlertDelet")
+const sectionPopup = document.querySelector(".sectionPopup");
+const sectionPopupDelet = document.getElementById("popupDeletProducer");
+
+console.log(popupDelet)
+console.log(sectionPopup)
+console.log(sectionPopupDelet)
+popupDelet.style.display = "block";
+sectionPopup.style.display = "block";
+sectionPopupDelet.style.display = "flex"
+})
+
+
+    const buttonBack = document.getElementById("buttonPopupAlertExit");
+
+    buttonBack.addEventListener("click", ()=>{
+        window.location.replace("/producers");
+    })
+
+    const buttonDeleteProducer = document.querySelector("#buttonDeleteProducer")
+    buttonDeleteProducer.addEventListener("click", ()=> {
+        const pathname2 = window.location.pathname;
+        const pathnameSplit2 = pathname2.split("/");
+        const id2 = pathnameSplit2[2]
+
+        const Id = id2
+        fetch('/producers/' + Id, {
+                        method: 'GET'
+                    })
+                        .then(response => {
+                            if (response.ok) {
+                                window.location.href = '/producers';
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Erro ao executar a requisição:', error);
+                        });
+    })
+</script>
+<script th:src="@{/script/navRedirectProducer.js}"></script>
+<script th:src="@{/script/validatePassword.js}"></script>
+<script th:src="@{/script/deleteUser.js}"></script>
+<script th:src="@{/script/navbarRedirect.js}"></script>
+</body>
+</html>

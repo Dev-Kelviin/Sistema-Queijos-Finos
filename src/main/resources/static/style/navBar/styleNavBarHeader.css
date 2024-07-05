@@ -1,0 +1,38 @@
+.navBarHeader{
+    background-color: var(--backgroudNavBarHead);   
+    width: 100%;
+    height: 20%;
+    max-height: 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    margin-bottom: 10px;
+   }
+   
+   .navBarHeaderList{
+       display: flex;
+       flex-direction: row;
+       justify-content: flex-end;
+       align-items: center;
+       padding: 10px 20px;
+       margin-top: 0; /* Remover qualquer espaço acima da seção principal */
+   }
+   
+.navBarHeader li img{
+    display: none;
+    padding-left: 20px;
+    cursor: pointer;
+}
+.navBarHeaderListLow{
+    justify-content: space-between;
+    color: white;
+}
+
+.navBarHeaderListLow li:nth-last-child(1) {
+    text-transform: capitalize;
+    color: var(--colorAdmim);
+}
+
+.navBarHeaderListLow li:nth-last-child(2) {
+    text-transform: uppercase;
+  }

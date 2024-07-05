@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="PT-br" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <title>Cadastro de Produtor</title>
+<!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
+    <link rel="stylesheet" href="style/reset.css">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/navBar/styleNavBarLeft.css">
+    <link rel="stylesheet" href="style/navBar/styleNavBarHeader.css">
+    <link rel="stylesheet" href="style/styleEditProducer.css">
+    <link rel="stylesheet" href="style/popups/stylePopups.css">
+</head>
+<style>
+    .listLinks a {
+        text-decoration: none;
+    }
+
+    .listLinks a {
+        text-decoration: none;
+    }
+</style>
+</head>
+<body>
+<section class="sectionPopup">
+    <section th:insert="popups/alertPopupForm" class="popupAlertDelet" style="display: none;"></section>
+</section>
+<main class="gridContainerBody">
+    <nav class="navBarLeft">
+        <section class="logo"><img src="images/logo/logoCerto.png" alt="logo queijos finos"></section>
+        <section class="listLinksNav">
+            <ul class="listLinks">
+                <li><a href="/dashboardProducer"><img src="images/icons/Vector.svg" alt=""> Dashboard</a></li>
+                <li class="listSelect"><a href="/producers"><img src="images/icons/producerVetorWhite.svg" alt=""> Produtores</a></li>
+                <li><a href="/tecnologias"><img src="images/icons/cheeseVetor.svg" alt=""> Cadastor Tecnologias</a></li>
+                <li><a href="/users"><img src="images/icons/configVetor.svg" alt=""> Configurações</a></li>
+            </ul>
+        </section>
+    </nav>
+
+    <section class="sectionPrincipal flexContainercolum">
+        <nav class="navBarHeader">
+            <ul class="navBarHeaderList">
+                <li><img src="images/icons/notificationvetor.svg" alt="icone de notificações"></li>
+                <li><img src="images/icons/configVetorWhite.svg" alt="icone de configurações"></li>
+            </ul>
+
+            <ul class="navBarHeaderList navBarHeaderListLow">
+                <li>CADASTRO DE PRODUTOR</li>
+                <li>administrador</li>
+            </ul>
+        </nav>
+        <div class="contentEditProducer">
+            <form th:action="@{/formProducer/producer}" method="post" class="producer-form">
+                <div class="campos-container">
+                    <div class="campos-form">
+                        <div>
+                            <label for="name">Nome completo</label>
+                            <input required name="name" id="name">
+                        </div>
+                        <div>
+                            <label for="cpf">CPF</label>
+                            <input required id="cpf" name="cpf">
+                        </div>
+                        <div>
+                            <label for="phone1">Telefone 1</label>
+                            <input required id="phone1" name="phone1">
+                        </div>
+                    </div>
+                    <div class="campos-form">
+                        <div>
+                            <label for="cnpj">CNPJ</label>
+                            <input required id="cnpj" name="cnpj">
+                        </div>
+                        <div>
+                            <label for="socialReason">Razao Social</label>
+                            <input required id="socialReason" name="socialReason">
+                        </div>
+                        <div>
+                            <label for="phone2">Telefone 2</label>
+                            <input required id="phone2" name="phone2">
+                        </div>
+                    </div>
+                    <div class="campos-form">
+                        <div>
+                            <label for="cep">CEP</label>
+                            <input required id="cep" name="cep">
+                        </div>
+                        <div>
+                            <label for="street">Logradouro</label>
+                            <input required id="street" name="street">
+                        </div>
+                        <div>
+                            <label for="number">Numero</label>
+                            <input required id="number" name="number">
+                        </div>
+                    </div>
+                    <div class="campos-form">
+                        <div>
+                            <label for="neighborhood">Vila/Bairro</label>
+                            <input required id="neighborhood" name="neighborhood">
+                        </div>
+                        <div>
+                            <label for="email">Email</label>
+                            <input required id="email" name="email">
+                        </div>
+                        <div>
+                            <label for="state">UF</label>
+                            <input required id="state" name="state">
+                        </div>
+                        <div>
+                            <label for="city">Cidade</label>
+                            <input required id="city" name="city">
+                        </div>
+                    </div>
+                </div>
+                <div class="certifications-info">
+                    <div class="certifications">
+                        <h3>Certificações</h3>
+                        <div class="campoCertificationInfos">
+                            <label for="simPoa">SIM/POA</label>
+                            <input id="simPoa" name="simPoa" type="date">
+                        </div>
+                        <div class="campoCertificationInfos">
+                            <label for="susaf">SUSAF</label>
+                            <input id="susaf" name="susaf" type="date">
+                        </div>
+                        <div class="campoCertificationInfos">
+                            <label for="sisbi">SISBI</label>
+                            <input id="sisbi" name="sisbi" type="date">
+                        </div>
+                        <div class="campoCertificationInfos">
+                            <label for="seloArte">SELO ARTE</label>
+                            <input id="seloArte" name="seloArte" type="date">
+                        </div>
+                        <div class="campoCertificationInfos">
+                            <label for="cif">CIF</label>
+                            <input id="cif" name="cif" type="date">
+                        </div>
+                    </div>
+                    <div class="contract-info">
+                        <h3>Informações sobre contrato</h3>
+                        <div class="campoCertificationInfos">
+                            <label for="signatureDate">Assinatura de Convenio de Cooperação Técnica</label>
+                            <input id="signatureDate" name="signatureDate" type="date">
+                        </div>
+                        <div class="campoCertificationInfos">
+                            <label for="expirationDate">Vencimento de contrato</label>
+                            <input id="expirationDate" name="expirationDate" type="date">
+                        </div>
+                        <div class="campoCertificationInfos">
+                            <label for="status">Situação no projeto</label>
+                            <select id="status" name="status">
+                                <option id="Ativo">Ativo</option>
+                                <option id="Ativo em complementação">Ativo em complementação</option>
+                                <option id="Desistente">Desistente</option>
+                            </select>
+                        </div>
+                        <div class="campoCertificationInfos">
+                            <label for="statusDate">Data Situação</label>
+                            <input id="statusDate" name="statusDate" type="date">
+                        </div>
+                    </div>
+                </div>
+                <div class="observation-container">
+                    <h3>Observação</h3>
+                    <textarea id="observation" name="observation"></textarea>
+                </div>
+                <div class="formButtons flexContainerRowBetween" style="display:flex; justify-content:end; gap: 10px;">
+                    <button id="buttonCancel" class="buttons buttonCancel" type="button">X Cancelar</button>
+                    <button class="buttons buttonSave" type="submit" data-target="#submit"><img src="images/icons/icons8-done.svg" alt="">Salvar</button>
+                </div>
+
+                <!-- Modal para sair sem salvar -->
+<!--                <div class="modal fade" id="close" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+<!--                    <div class="modal-dialog" role="document">-->
+<!--                        <div class="popupSave" style="width: 100%;">-->
+<!--                            <div class="modal-header">-->
+<!--                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--                                    <span aria-hidden="true">&times;</span>-->
+<!--                                </button>-->
+<!--                            </div>-->
+<!--                            <div class="modal-body text-center">-->
+<!--                                <img src="images/icons/iconInterrogation.svg" alt="icone salvar" style="width: 120px;">-->
+<!--                                <p>Deseja sair sem salvar? Os Documentos alterados serão perdidos</p>-->
+<!--                            </div>-->
+<!--                            <div class="modal-footer d-flex justify-content-center">-->
+<!--                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>-->
+<!--                                <button type="button" id="buttonPopupAlertExit" class="btn btn-primary" data-dismiss="modal">Sair</button>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+                <!-- Modal para sucesso ao salvar -->
+<!--                <div class="modal fade" id="submit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+<!--                    <div class="modal-dialog" role="document">-->
+<!--                        <div class="modal-content">-->
+<!--                            <div class="modal-header">-->
+<!--                                <h5 class="modal-title" id="exampleModalLabel">Salvo com sucesso!</h5>-->
+<!--                            </div>-->
+<!--                            <div class="modal-footer">-->
+<!--                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Ok!</button>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+            </form>
+        </div>
+    </section>
+</main>
+<!--const sairSemSalvar = document.getElementById("sairSemSalvar");-->
+<!--sairSemSalvar.addEventListener("click", ()=>{-->
+<!--window.location.replace("/producers")-->
+<!--})-->
+<script>
+    const closeFormButton = document.getElementById("buttonCancel");
+
+    closeFormButton.addEventListener("click", () => {
+    console.log("aaaaaa")
+
+    const popupAlertDelet = document.querySelector(".popupAlertDelet");
+    const sectionPopup = document.querySelector(".sectionPopup");
+    const popup = document.getElementById("popup");
+
+    console.log(sectionPopup)
+    console.log(popupAlertDelet)
+
+    sectionPopup.style.display = "block";
+    popupAlertDelet.style.display = "block";
+    popup.style.display = "flex";
+
+    const buttonBack = document.getElementById("buttonPopupAlertExit");
+
+    buttonBack.addEventListener("click", ()=>{
+        window.location.replace("/producers");
+    })
+});
+</script>
+<script src="script/validatePassword.js" ></script>
+<script src="script/deleteUser.js"></script>
+</body>
+
+
+</html>

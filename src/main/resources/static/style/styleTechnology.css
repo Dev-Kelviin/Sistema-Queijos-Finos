@@ -1,0 +1,11 @@
+.formButtons{
+    justify-content: flex-end;
+}
+
+.formButtons button{
+    margin: 0px 0 10px 20px;
+}
+
+.form-group input{
+    max-width: 450px;
+}

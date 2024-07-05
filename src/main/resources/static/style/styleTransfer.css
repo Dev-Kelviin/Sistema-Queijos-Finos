@@ -1,0 +1,70 @@
+.sectionPrincipal{
+    width: 100%;
+    justify-content: flex-start; /* não remover */
+}
+
+.sectionList{
+    width: 98%;
+    margin-top: 20px;
+    padding: 10px 20px 5px;
+    box-shadow: 1px 4px 5px 0px rgba(0,0,0,0.75);
+}
+
+
+.sectionListHeader p{
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.formButtons{
+    justify-content: flex-end;
+}
+
+.formButtons button{
+    margin: 10px 0 10px 20px;
+}
+
+#sectionForms{
+    display: flex;
+}
+
+.transferForm{
+    width: 100%;
+}
+
+.sectionForms{
+    display: none; 
+}
+
+.sectionForms form input{
+    border: 1px solid black;
+    margin-bottom: 10px;
+}
+
+.topIpunts{
+    display: flex;
+    gap: 2%;
+    padding-bottom: 15px;
+}
+
+select{
+    border: 1px solid black;
+    margin-bottom: 10px;
+}
+
+.bottomInputs{
+    display: flex;
+    gap: 2%;
+}
+
+#tecnologia{
+    width: 35%;
+}
+
+#situacao{
+    width: 20%;
+}
+
+#data_inicio, #data_conclusao, #ultima_modificacao{
+    width: 15%;
+}

@@ -1,0 +1,223 @@
+:root {
+    --backgroudNavBar: #ffffff; 
+    --backgroudNavBarHead: #132F3E;
+    --hoverNavBarLink: #2a4858; /* Cor de fundo ao passar o mouse nos links */
+    --activeNavBarLink: #132F3E; /* Cor de fundo do link ativo */
+    --backgorudBottonAdd: #30363D;
+    --backgroundBottonAddHover: #373b41;
+    --backgroudBottonSave: #06744D;
+    --backgroudBottonSaveHover: #02412b;
+    --backgroundBottonCancelHover: #ff0000;
+    --backgroundBottonExitHover: #c20808;
+    --backgroundBottonCancelPopup: #1865FA;
+    --backgroundBottonCancelPopupHover: #1a4bac;
+    --backgroudLListItem: #EBEBEB;
+    --colorAdmim: #0BCA87;
+}
+
+*{
+    font-family: "Poppins", sans-serif;
+}
+
+.gridContainerBody{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    width: 100vw;
+    height: 100vh;
+}
+
+.flexContainercolum{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.flexContainerRowBetween{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* configuracao botoes */
+
+.buttons{
+    font-size: 1rem;
+    padding: 10px 18px;
+    border-radius: 5px;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+}
+
+
+
+.buttonAdd{
+    background-color: var(--backgorudBottonAdd);  
+}
+
+.button-link{
+    color: white;
+}
+
+.buttonAdd:hover{
+    background-color: var(--backgroundBottonAddHover);
+}
+
+.buttonSave{
+    background-color: var(--backgroudBottonSave);
+    border: 2px solid var(--backgroudBottonSave);
+
+}
+
+.buttonSave:hover{
+    background-color: var(--backgroudBottonSaveHover);
+    border: 2px solid var(--backgroudBottonSaveHover);
+}
+
+.buttonSave img{
+    height: 1rem;
+}
+
+.buttonCancel{
+    border: 2px solid var(--backgroundBottonCancelHover);
+    color: var(--backgroundBottonCancelHover);
+}
+
+.buttonCancel:hover{
+    background-color: var(--backgroundBottonCancelHover);
+    color: white;
+}
+
+/* configurações seção principal */
+
+.sectionPrincipal{
+    width: 100%;
+    
+}
+
+.sectionList{
+    width: 98%;
+    margin-bottom: 20px;
+    padding: 10px 20px 5px;
+    box-shadow: 1px 4px 5px 0px rgba(0,0,0,0.75);
+}
+
+
+.sectionListHeader p{
+    text-transform: uppercase;
+    font-weight: 600;
+}
+    
+.sectionForms{
+    display: none;
+}
+
+
+/* configuracoes tabelas */
+
+.table{
+    width: 100%;
+    padding-top: 5px; 
+    border-collapse: separate;
+    border-spacing: 0 5px;
+    text-align: left;
+
+    font-weight: 500;
+}
+
+.table thead, tr, th{
+    padding-left: 10px;
+}
+
+.table td{
+    padding-left: 10px;
+    justify-content: flex-start;
+    
+}
+
+.imageTable{
+    width: 1,5rem;
+    padding-right: 1rem;
+}
+
+.table tbody tr{  
+    background-color: var(--backgroudLListItem);
+
+}
+
+.table td:last-child {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 10px;
+}
+
+.table td:last-child button{
+    cursor: pointer;
+    margin-left: 5px;
+    padding-top: 5px;
+}
+
+
+.table td:last-child button:hover{
+    opacity: 0.7; 
+}
+
+.highlight-name{
+    text-transform: capitalize;
+}
+
+
+
+.section-form {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+
+.title-form { 
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 18px;
+    margin: 10px 0 ;
+}
+
+
+.form-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+.form-group {
+    flex: 1;
+    margin-bottom: 20px;
+    min-width: 250px; 
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+
+.form-group input,
+.form-group select {
+    width: 80%;
+    padding: 3px 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+}
+
+.form-group input::placeholder,
+.form-group select::placeholder {
+    color: #888;
+    opacity: 1; /* Para garantir que a cor seja aplicada consistentemente em todos os navegadores */
+    font-style: italic;
+    font-size: 15px; 
+}

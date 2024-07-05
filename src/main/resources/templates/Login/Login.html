@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login de Usuário</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+	<link rel ="stylesheet" href="style/styleLogin.css">
+    <link rel="stylesheet" href="media/mediaLogin.css">
+</head>
+<body>
+    
+	
+    <main class="content">
+
+        <h1 class="titulo1">QUEIJOS</h1>
+        <h1 class="titulo2">FINOS</h1>
+        
+        <form id="form" action="/logInto" method="post" >
+            <div>
+                <input type="text" id="email" name="email" placeholder="E-mail de acesso" class="inputs required" oninput="emailValidate()" >
+                <span class="span-required">Informe um E-mail válido</span>
+            </div>
+        
+            
+
+            <div>
+                <input type="password" id="password" name="password" placeholder="Senha de acesso" class="inputs required">
+                <span class="span-required">Senha de acesso</span>
+            </div>
+
+            <p class="loginError" th:if="${not #strings.isEmpty(erro)}" th:text="${erro}" ></p>
+
+        
+            <div class="box-select">
+                <div class="checkbox-container">
+                    <input type="checkbox" id="conectado" value="conectado">
+                    <label for="conectado">Manter conectado</label>
+                </div>
+                <p><a href="../PasswordReset/PasswordReset.html">Esqueceu a Senha?</a></p>
+            </div>
+        
+            <button type="submit">Entrar</button>
+        </form>
+        
+
+
+	    <!-- <script src="script/scriptLogin.js"></script> -->
+	
+    </main>
+
+</body>
+
+
+</html>
