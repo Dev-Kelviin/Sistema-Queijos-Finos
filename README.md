@@ -42,6 +42,7 @@ Contribuições são bem-vindas! Sinta-se à vontade para abrir uma issue ou env
 
 ## Autores
 
-- [Nome do Autor 1](https://github.com/usuario1)
-- [Nome do Autor 2](https://github.com/usuario2)
-- [Nome do Autor 3](https://github.com/usuario3)
+- [Mario Guilherme]([https://github.com/usuario1](https://github.com/marioguiW))
+- [Carlos Barros]([https://github.com/usuario2](https://github.com/carlosbarros007))
+- [Matheus Morilha](https://github.com/MatheusMorilha)
+- [Vinicius Agnes](https://github.com/ViniciusAgnes)
