@@ -42,7 +42,7 @@ Contribuições são bem-vindas! Sinta-se à vontade para abrir uma issue ou env
 
 ## Autores
 
-- [Mario Guilherme]([https://github.com/usuario1](https://github.com/marioguiW))
-- [Carlos Barros]([https://github.com/usuario2](https://github.com/carlosbarros007))
+- [Mario Guilherme]([https://github.com/usuario1](https://github.com/marioguiW)
+- [Carlos Barros]([https://github.com/usuario2](https://github.com/carlosbarros007)
 - [Matheus Morilha](https://github.com/MatheusMorilha)
 - [Vinicius Agnes](https://github.com/ViniciusAgnes)
